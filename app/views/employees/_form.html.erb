@@ -1,0 +1,55 @@
+ 
+  <% if @employee.errors.any? %>
+    <div id="error_explanation">
+       <ul>
+      <% @employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= form_for(@employee) do |f| %>
+
+<div class="form-inline">
+  <div class="form-group col-md-6">
+      <%= f.label :name %><span>*<span><br>
+    <%= f.text_field :name, class: "form-control"%>
+  </div>
+
+    <div class="form-group col-md-6">
+    <%= f.label :department_name %><span>*<span><br>
+    <%= f.select :department_id, Department.all.collect {|p| [ p.name, p.id, class: "form-control" ] }  %>
+  </div>
+  </div>
+<div class="form-inline">
+
+    <div class="form-group col-md-6">
+    <%= f.label :doj %><span>*<span><br>
+    <%= f.date_select :doj, class: "form-control" %>
+  </div>
+    <div class="form-group col-md-6">
+    <%= f.label :mobile %><span>*<span><br>
+    <%= f.text_field :mobile, class: "form-control" %>
+  </div>
+  </div>
+<div class="form-inline">
+    <div class="form-group col-md-6">
+      <%= f.label :salary %><span>*<span><br>
+      <%= f.text_field :salary, class: "form-control col-md-6" %>
+    </div>
+    <div class="form-group"></div>
+  </div>
+  <br>
+
+<div class="form-inline">
+    <div class="form-group col-md-6">
+    <%= f.submit "Save", class: "btn btn-primary"%>
+    </div>
+    <div class="form-group col-md-6">
+      <%= link_to "Cancel", :employees, class: "btn btn-primary"%>
+    </div>
+
+  </div>
+<% end %>
+</div>
